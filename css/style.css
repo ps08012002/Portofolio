@@ -1,0 +1,207 @@
+:root {
+  --mainColor: #1a1b22;
+  --secondColor: #333646;
+  --activeColor: #ffae00;
+}
+
+body {
+  background-color: var(--mainColor);
+  min-height: 900px;
+  font-family: "ubuntu", sans-serif;
+}
+
+/* Navbar*/
+
+.nav-link.active {
+  color: var(--activeColor) !important;
+  font-weight: 800;
+}
+
+/* End Navbar*/
+
+/* Home */
+
+.color-acsent {
+  color: var(--activeColor);
+}
+
+#home {
+  color: #fff;
+  min-height: 100vh;
+}
+
+#home h1 {
+  font-size: 3rem;
+}
+
+#home h2 {
+  font-weight: 300;
+}
+
+#home p {
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+
+.frame {
+  background: linear-gradient(150deg, #4b6a89, #425265b3);
+  border-radius: 20px;
+  padding: 60px 40px;
+  border-radius: 20px;
+  padding: 60px;
+  width: 1400px;
+  height: 570px;
+  margin-left: 140px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.frame h1,
+frame h2,
+frame p {
+  color: #fff;
+}
+
+.btn_custom1 {
+  background-color: var(--activeColor);
+  text-align: center;
+  color: #fff;
+  min-width: 150px;
+  height: 45px;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.cv {
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.sosial_media svg {
+  margin-right: 1em;
+  margin-bottom: 10px;
+}
+
+/* End Home */
+
+/* About */
+
+hr {
+  width: 35%;
+  height: 5px;
+  color: var(--activeColor);
+  margin: 0 auto;
+  opacity: 100%;
+}
+#about-me {
+  min-height: 300px;
+  width: 100%;
+  background-color: var(--secondColor);
+  color: #fff;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  margin-bottom: 80px;
+}
+
+/* End About */
+
+/* Skill */
+
+#skill {
+  min-height: 600px;
+  width: 100%;
+  color: #fff;
+}
+
+#skill img {
+  width: 10%;
+  margin: 10px;
+}
+
+#skill .card {
+  background-color: #414558;
+  height: 380px;
+}
+
+#skill .card:hover {
+  background-color: var(--activeColor);
+  cursor: pointer;
+}
+#skill .icard {
+  width: 45%;
+}
+
+/* End Skill */
+
+/* Dukmentasi */
+
+#dokumentasi {
+  margin-top: -190px;
+  padding: 270px;
+  padding-bottom: 100px;
+  color: #fff;
+  background-color: var(--secondColor);
+}
+
+#dokumentasi .hr1 {
+  width: 80%;
+  height: 2px;
+  color: var(--activeColor);
+  margin: 0 auto;
+  opacity: 100%;
+}
+
+#dokumentasi img {
+  width: 25%;
+  padding: 10px;
+}
+
+#dokumentasi .img1 {
+  width: 50%;
+  padding: 10px;
+}
+
+#dokumentasi p,
+a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+/* End Dokumentasi */
+
+/* Sertifikat */
+
+#sertifikat {
+  min-height: 300px;
+  width: 100%;
+  color: #fff;
+  padding-top: 50px;
+  padding-bottom: 80px;
+  margin-bottom: 80px;
+}
+
+#sertifikat .img {
+  width: 35%;
+  padding: 10px;
+}
+
+/* End Sertifikat */
+
+/* Footer */
+
+#footer {
+  background-color: var(--secondColor);
+  color: #fff;
+}
+
+.sosial_media_footer svg {
+  margin-right: 1em;
+  margin-bottom: 10px;
+}
+
+#footer .img2 {
+  width: 4%;
+}
+
+/* End Footer */
