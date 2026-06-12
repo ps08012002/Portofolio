@@ -86,7 +86,9 @@ a:hover {
 .hero-layout {
   min-height: inherit;
   align-items: stretch;
-  width: 100%;
+  width: auto;
+  margin-right: 0;
+  margin-left: 0;
 }
 
 .hero-content {
@@ -189,6 +191,7 @@ a:hover {
 
 .hero-image {
   width: min(430px, 100%);
+  display: block;
   filter: drop-shadow(0 24px 32px rgba(0, 0, 0, 0.26));
 }
 
@@ -313,6 +316,7 @@ hr {
   display: grid;
   gap: 18px;
   margin-top: 26px;
+  align-items: start;
 }
 
 .gallery-four {
@@ -325,12 +329,23 @@ hr {
 
 .gallery img {
   width: 100%;
-  height: 100%;
-  min-height: 210px;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.08);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.18);
+}
+
+#sertifikat .gallery img {
+  aspect-ratio: 16 / 11;
+  object-fit: contain;
+  padding: 10px;
+}
+
+#sertifikat .gallery-two {
+  max-width: 860px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .project-grid {
@@ -341,8 +356,9 @@ hr {
 }
 
 .project-thumbnail {
+  position: relative;
   display: grid;
-  grid-template-rows: minmax(150px, 1fr) auto;
+  grid-template-rows: auto auto;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
@@ -354,6 +370,46 @@ hr {
     background-color 0.2s ease;
 }
 
+.project-thumbnail::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(110deg, transparent 0 34%, rgba(255, 255, 255, 0.22) 42%, transparent 50% 100%),
+    linear-gradient(180deg, rgba(26, 27, 34, 0) 34%, rgba(26, 27, 34, 0.78));
+  background-size: 220% 100%, 100% 100%;
+  background-position: 150% 0, 0 0;
+  opacity: 0.78;
+  transition:
+    background-position 0.7s ease,
+    opacity 0.25s ease;
+}
+
+.project-thumbnail::after {
+  content: "Lihat detail";
+  position: absolute;
+  right: 14px;
+  bottom: 78px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 999px;
+  background: rgba(255, 174, 0, 0.95);
+  color: #1a1b22;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+  transform: translateY(8px);
+  animation: projectFloat 2.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
 .project-thumbnail:hover,
 .project-thumbnail:focus {
   transform: translateY(-5px);
@@ -362,26 +418,42 @@ hr {
   color: #fff;
 }
 
+.project-thumbnail:hover::before,
+.project-thumbnail:focus::before {
+  background-position: -70% 0, 0 0;
+  opacity: 0.5;
+}
+
+.project-thumbnail:hover::after,
+.project-thumbnail:focus::after {
+  animation: none;
+  transform: translateY(0);
+  background: #ffc24a;
+}
+
 .project-thumbnail img {
   width: 100%;
-  height: 190px;
+  aspect-ratio: 16 / 10;
+  height: auto;
   object-fit: cover;
   object-position: top;
+  transition: transform 0.35s ease;
+}
+
+.project-thumbnail:hover img,
+.project-thumbnail:focus img {
+  transform: scale(1.045);
 }
 
 .project-thumbnail span {
+  position: relative;
+  z-index: 2;
   min-height: 64px;
   display: flex;
   align-items: center;
   padding: 14px 16px;
   font-weight: 800;
   line-height: 1.35;
-}
-
-.project-detail-intro {
-  margin: 24px 0 0;
-  text-align: center;
-  color: var(--textMuted);
 }
 
 .project-detail {
@@ -424,10 +496,6 @@ hr {
   display: block;
 }
 
-.project-grid:has(~ .project-detail:target) + .project-detail-intro {
-  display: none;
-}
-
 .project-detail-content {
   max-width: 860px;
   margin-bottom: 22px;
@@ -454,10 +522,15 @@ hr {
 
 .project-images {
   margin-top: 0;
+  justify-items: center;
 }
 
 .project-images img {
+  aspect-ratio: 16 / 10;
+  max-width: min(100%, 720px);
+  object-fit: contain;
   object-position: top;
+  padding: 8px;
 }
 
 .certificate-link {
@@ -467,22 +540,56 @@ hr {
 }
 
 #footer {
-  padding: 42px 0;
+  padding: 18px 0;
   background-color: var(--secondColor);
 }
 
-.footer-logo {
-  width: 64px;
-  margin-bottom: 18px;
+.footer-inner {
+  width: min(100%, 560px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin: 0 auto;
+  padding: 10px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
 }
 
 #footer p {
   margin-bottom: 0;
   color: var(--textMuted);
+  font-size: 0.95rem;
 }
 
 #footer .social-links {
-  margin-top: 20px;
+  gap: 10px;
+  margin-top: 0;
+}
+
+#footer .social-links a {
+  width: 36px;
+  height: 36px;
+}
+
+#footer .social-links img {
+  width: 17px;
+  height: 17px;
+}
+
+@keyframes projectFloat {
+  0% {
+    transform: translateY(8px);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(8px);
+  }
 }
 
 @media (max-width: 991.98px) {
@@ -505,15 +612,23 @@ hr {
 
   .hero-card {
     min-height: auto;
-    padding-bottom: 0;
+    padding: 34px 30px 0;
     text-align: center;
   }
 
+  .hero-layout {
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 28px;
+    align-items: center;
+  }
+
   .hero-content {
+    align-items: center;
     padding-bottom: 0;
   }
 
   .hero-visual {
+    align-items: center;
     justify-content: center;
   }
 
@@ -532,11 +647,30 @@ hr {
   }
 
   .hero-image {
-    width: min(330px, 78vw);
+    width: min(310px, 72vw);
+    margin-inline: auto;
+  }
+
+  .section-band,
+  .content-section {
+    padding: 64px 0;
   }
 
   .gallery-four {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery img {
+    aspect-ratio: 16 / 12;
+  }
+
+  #sertifikat .gallery img,
+  .project-images img {
+    aspect-ratio: 16 / 11;
+  }
+
+  #sertifikat .gallery-two {
+    max-width: 680px;
   }
 
   .project-grid {
@@ -550,12 +684,49 @@ hr {
   }
 
   .hero-card {
-    padding: 28px 20px 0;
+    padding: 30px 20px 0;
+    border-radius: 14px;
+  }
+
+  .hero-section {
+    padding: 18px 0 54px;
+  }
+
+  .hero-card h1 {
+    font-size: clamp(2.15rem, 11vw, 3rem);
+  }
+
+  .section-band,
+  .content-section {
+    padding: 52px 0;
+  }
+
+  .section-heading {
+    margin-bottom: 26px;
+  }
+
+  #footer {
+    padding: 16px 0;
+  }
+
+  #footer p {
+    font-size: 0.88rem;
+    text-align: center;
+  }
+
+  .footer-inner {
+    width: min(100%, 340px);
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px 16px;
     border-radius: 14px;
   }
 
   .hero-actions {
     align-items: stretch;
+    width: min(100%, 320px);
+    margin-right: auto;
+    margin-left: auto;
   }
 
   .btn_custom1,
@@ -585,14 +756,16 @@ hr {
   .gallery-four,
   .gallery-two {
     grid-template-columns: 1fr;
+    gap: 14px;
   }
 
   .gallery img {
-    min-height: 180px;
+    max-height: 280px;
   }
 
   .project-grid {
     grid-template-columns: 1fr;
+    gap: 14px;
   }
 
   .project-thumbnail {
@@ -600,6 +773,84 @@ hr {
   }
 
   .project-thumbnail img {
-    height: 210px;
+    aspect-ratio: 16 / 9;
+  }
+
+  .project-thumbnail::after {
+    right: 12px;
+    bottom: 74px;
+    min-height: 32px;
+    padding: 7px 12px;
+    font-size: 0.74rem;
+  }
+
+  #dokumentasi > .container > .gallery-four img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  #sertifikat .gallery img {
+    max-width: min(92%, 360px);
+    max-height: 175px;
+    object-fit: contain;
+    padding: 6px;
+  }
+
+  .project-images img {
+    max-width: min(92%, 360px);
+    max-height: 180px;
+    object-fit: contain;
+    padding: 6px;
+  }
+
+  .project-detail {
+    padding: 22px 16px;
+  }
+
+  .project-detail-content {
+    padding-right: 0;
+  }
+
+  .project-close {
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .container {
+    width: min(100% - 20px, 540px);
+  }
+
+  .hero-card {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .hero-image {
+    width: min(260px, 74vw);
+  }
+
+  .skill-logo {
+    width: 136px;
+    flex-basis: 136px;
+  }
+
+  .gallery img,
+  #sertifikat .gallery img,
+  .project-images img {
+    max-height: 215px;
+  }
+
+  #sertifikat .gallery img {
+    max-width: min(90%, 300px);
+    max-height: 145px;
+  }
+
+  .project-images img {
+    max-height: 160px;
   }
 }
